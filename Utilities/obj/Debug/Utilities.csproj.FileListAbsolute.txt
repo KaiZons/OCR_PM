@@ -1,0 +1,10 @@
+E:\vs2017TestCode\OCRTest\Utilities\bin\Debug\Utilities.dll
+E:\vs2017TestCode\OCRTest\Utilities\bin\Debug\Utilities.pdb
+E:\vs2017TestCode\OCRTest\Utilities\obj\Debug\Utilities.csprojAssemblyReference.cache
+E:\vs2017TestCode\OCRTest\Utilities\obj\Debug\Utilities.csproj.CoreCompileInputs.cache
+E:\vs2017TestCode\OCRTest\Utilities\obj\Debug\Utilities.dll
+E:\vs2017TestCode\OCRTest\Utilities\obj\Debug\Utilities.pdb
+E:\vs2017TestCode\OCRTest\Utilities\bin\Debug\Newtonsoft.Json.dll
+E:\vs2017TestCode\OCRTest\Utilities\bin\Debug\Newtonsoft.Json.pdb
+E:\vs2017TestCode\OCRTest\Utilities\bin\Debug\Newtonsoft.Json.xml
+E:\vs2017TestCode\OCRTest\Utilities\obj\Debug\Utilities.csproj.CopyComplete

@@ -1,0 +1,6 @@
+E:\vs2017TestCode\OCRTest\Module\bin\Debug\Module.dll
+E:\vs2017TestCode\OCRTest\Module\bin\Debug\Module.pdb
+E:\vs2017TestCode\OCRTest\Module\obj\Debug\Module.csprojAssemblyReference.cache
+E:\vs2017TestCode\OCRTest\Module\obj\Debug\Module.csproj.CoreCompileInputs.cache
+E:\vs2017TestCode\OCRTest\Module\obj\Debug\Module.dll
+E:\vs2017TestCode\OCRTest\Module\obj\Debug\Module.pdb
