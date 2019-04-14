@@ -51,9 +51,9 @@ namespace BaiduAIAPI
             return accessTokenView;
         }
 
-        public static string GetBaiduRecognizeUrl()
+        public static string GetBaiduRecognizeUrl(string pattern)
         {
-            bool isHighPrecision = Convert.ToBoolean(ConfigurationManager.AppSettings["UseHighPrecisionVersion"]);
+            bool isHighPrecision = pattern == "高精度版";
             return isHighPrecision ? "https://aip.baidubce.com/rest/2.0/ocr/v1/accurate_basic"
                                    : "https://aip.baidubce.com/rest/2.0/ocr/v1/general_basic";
         }

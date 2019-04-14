@@ -37,6 +37,8 @@
             this.picDig = new System.Windows.Forms.FolderBrowserDialog();
             this.m_resultTextBox = new System.Windows.Forms.RichTextBox();
             this.m_progressBar = new System.Windows.Forms.ProgressBar();
+            this.m_recongnizePattern = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.m_originalPictureBox)).BeginInit();
             this.SuspendLayout();
@@ -45,9 +47,11 @@
             // 
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel1.Controls.Add(this.m_recongnizePattern);
             this.panel1.Controls.Add(this.m_selectPictureButton);
             this.panel1.Controls.Add(this.m_imagePathText);
             this.panel1.Controls.Add(this.m_tipLabel);
+            this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.m_imagePathLabel);
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Margin = new System.Windows.Forms.Padding(0);
@@ -78,9 +82,9 @@
             this.m_tipLabel.ForeColor = System.Drawing.SystemColors.GrayText;
             this.m_tipLabel.Location = new System.Drawing.Point(725, 18);
             this.m_tipLabel.Name = "m_tipLabel";
-            this.m_tipLabel.Size = new System.Drawing.Size(185, 12);
+            this.m_tipLabel.Size = new System.Drawing.Size(197, 12);
             this.m_tipLabel.TabIndex = 0;
-            this.m_tipLabel.Text = "选择图片或将图片拖入左侧图片框";
+            this.m_tipLabel.Text = "(选择图片或将图片拖入左侧图片框)";
             // 
             // m_imagePathLabel
             // 
@@ -125,6 +129,27 @@
             this.m_progressBar.Size = new System.Drawing.Size(294, 23);
             this.m_progressBar.TabIndex = 3;
             // 
+            // m_recongnizePattern
+            // 
+            this.m_recongnizePattern.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.m_recongnizePattern.FormattingEnabled = true;
+            this.m_recongnizePattern.Items.AddRange(new object[] {
+            "普通版",
+            "高精度版"});
+            this.m_recongnizePattern.Location = new System.Drawing.Point(1018, 14);
+            this.m_recongnizePattern.Name = "m_recongnizePattern";
+            this.m_recongnizePattern.Size = new System.Drawing.Size(99, 20);
+            this.m_recongnizePattern.TabIndex = 3;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(953, 18);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(59, 12);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "识别方式:";
+            // 
             // RecognizeWordsOnPic
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -158,6 +183,8 @@
         private System.Windows.Forms.RichTextBox m_resultTextBox;
         private System.Windows.Forms.Label m_tipLabel;
         private System.Windows.Forms.ProgressBar m_progressBar;
+        private System.Windows.Forms.ComboBox m_recongnizePattern;
+        private System.Windows.Forms.Label label1;
     }
 }
 
