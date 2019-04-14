@@ -51,6 +51,13 @@ namespace BaiduAIAPI
             return accessTokenView;
         }
 
+        public static string GetBaiduRecognizeUrl()
+        {
+            bool isHighPrecision = Convert.ToBoolean(ConfigurationManager.AppSettings["UseHighPrecisionVersion"]);
+            return isHighPrecision ? "https://aip.baidubce.com/rest/2.0/ocr/v1/accurate_basic"
+                                   : "https://aip.baidubce.com/rest/2.0/ocr/v1/general_basic";
+        }
+
         private static string GetBaiduAccessToken()
         {
             HttpClient client = new HttpClient();

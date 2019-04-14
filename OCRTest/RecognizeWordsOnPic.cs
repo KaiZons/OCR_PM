@@ -14,15 +14,27 @@ using ImageMoveZoom;
 using System.Web;
 using Utilities;
 using Module;
+using System.Threading;
 
 namespace OCRTest
 {
     public partial class RecognizeWordsOnPic : Form
     {
+        private bool m_recongnizeFinished = false;
+        private string m_recongnizeText = string.Empty;
+
         public RecognizeWordsOnPic()
         {
             InitializeComponent();
-            m_recognizeButton.Enabled = false;
+            m_originalPictureBox.AllowDrop = true;
+            ResetProgressBar(false);
+        }
+
+        private void ResetProgressBar(bool visible, int max = 100, int value = 0)
+        {
+            m_progressBar.Maximum = max;
+            m_progressBar.Value = value;
+            m_progressBar.Visible = visible;
         }
 
         //选择图片
@@ -30,28 +42,36 @@ namespace OCRTest
         {
             try
             {
-                using (OpenFileDialog picDlg = new OpenFileDialog())
-                {
-                    picDlg.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-                    picDlg.Filter = "图片|*.bmp;*.ico;*.jpeg;*.jpg;*.png;*.tif;*.tiff";
-                    picDlg.RestoreDirectory = true;
-                    picDlg.FilterIndex = 1;
-                    if (picDlg.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-                    {
-                        m_imagePathText.Text = picDlg.FileName;
-                        FileStream fileImage = new FileStream(picDlg.FileName, FileMode.Open, FileAccess.Read);
-                        Image image = Image.FromStream(fileImage);
-                        if (image != null)
-                        {
-                            m_originalPictureBox.Image = image;
-                            m_recognizeButton.Enabled = true;
-                        }
-                    }
-                }
+                m_originalPictureBox.Image = GetImage();
+                Recognize();
             }
-            catch (Exception ex)
+            catch
             {
+                MessageBox.Show("选择文件出错！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
 
+        private Image GetImage()
+        {
+            using (OpenFileDialog picDlg = new OpenFileDialog())
+            {
+                picDlg.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+                picDlg.Filter = "图片|*.bmp;*.jpg;*.png";
+                picDlg.RestoreDirectory = true;
+                picDlg.FilterIndex = 1;
+                if (picDlg.ShowDialog() != System.Windows.Forms.DialogResult.OK)
+                {
+                    return null;
+                }
+                m_imagePathText.Text = picDlg.FileName;
+                FileStream fileImage = new FileStream(picDlg.FileName, FileMode.Open, FileAccess.Read);
+                Image image = Image.FromStream(fileImage);
+                if (image == null || !VerificationImage(image))
+                {
+                    return null;
+                }
+                fileImage.Dispose();
+                return image;
             }
         }
 
@@ -70,32 +90,156 @@ namespace OCRTest
         }
 
         //识别文字
-        private void OnRecognizeButtonClick(object sender, EventArgs e)
+        private void Recognize()
         {
+            m_recongnizeFinished = false;
+            m_resultTextBox.Text = string.Empty;
+            m_originalPictureBox.Refresh();
+            m_resultTextBox.Refresh();
             if (m_originalPictureBox.Image == null)
             {
                 return;
             }
-            AccessTokenView token = AccessToken.GetAccessToken();
-            if (!token.IsSuccess)
+            
+            Task.Run(RemoteBaiduRecognize);
+            RunProgressBar();
+            m_resultTextBox.Text = m_recongnizeText;
+        }
+
+        private void RemoteBaiduRecognize()
+        {
+            try
             {
-                MessageBox.Show("获取Token失败！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
+                AccessTokenView token = AccessToken.GetAccessToken();
+                if (!token.IsSuccess)
+                {
+                    this.Invoke(new Action(() =>
+                    {
+                        MessageBox.Show("获取Token失败！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }));
+                    m_recongnizeText = string.Empty;
+                    return;
+                }
+                m_recongnizeText = RecognizeText(token.SuccessModel.access_token);
+                m_recongnizeFinished = true;
             }
-            string text = RecognizeText(token.SuccessModel.access_token);
-            m_resultTextBox.Text = text;
+            catch
+            {
+                MessageBox.Show("识别过程出错！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
 
         private string RecognizeText(string tokenString)
         {
-            string host = "https://aip.baidubce.com/rest/2.0/ocr/v1/accurate_basic?access_token=" + tokenString;//参数参考https://ai.baidu.com/docs#/OCR-API/top
+            string host = AccessToken.GetBaiduRecognizeUrl() + "?access_token=" + tokenString;//参数参考https://ai.baidu.com/docs#/OCR-API/top
             Bitmap bitmap = new Bitmap(m_originalPictureBox.Image);
             string imageByteValue = ImageConversion.ImageToByte64String(bitmap, System.Drawing.Imaging.ImageFormat.Jpeg);
+            if (!VerificationImage(imageByteValue))
+            {
+                return string.Empty;
+            }
             string requestParas = "detect_direction=" + false + "&image=" + HttpUtility.UrlEncode(imageByteValue);
             string result = HttpRequestHelper.Post(host, requestParas);
             RecognizeResultModel recognizeResult = JsonExtends.ToObject<RecognizeResultModel>(result);
+            if (recognizeResult == null || recognizeResult.words_result == null)
+            {
+                return string.Empty;
+            }
             string[] wordArray = recognizeResult.words_result.Select(a => a.words).ToArray();
             return string.Join("\r\n", wordArray);
+        }
+
+        private void RunProgressBar()
+        {
+            ResetProgressBar(true);
+            int value = 1;
+            while (true)
+            {
+                bool maxValueNotEnough = value == m_progressBar.Maximum;
+                int newMaxValue = maxValueNotEnough ? m_progressBar.Maximum + 1 : m_progressBar.Maximum;
+                if (!m_recongnizeFinished)
+                {
+                    ResetProgressBar(true, newMaxValue, value);
+                    value++;
+                    Thread.Sleep(10);
+                }
+                else
+                {
+                    ResetProgressBar(true, newMaxValue, newMaxValue);
+                    break;
+                }
+            }
+            ResetProgressBar(false);
+        }
+
+        private bool VerificationImage(Image image)
+        {
+            int minSidePX = Math.Min(image.Size.Width, image.Size.Height);
+            int maxSidePX = Math.Max(image.Size.Width, image.Size.Height);
+            if (minSidePX < 15)
+            {
+                MessageBox.Show("图片最小边至少15px！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return false;
+            }
+            if (maxSidePX > 4096)
+            {
+                MessageBox.Show("图片最大边不能超过4096px！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return false;
+            }
+            return true;
+        }
+
+        private bool VerificationImage(string imageByte64)
+        {
+            Encoding encoding = Encoding.Default;
+            string urlEncodeImage = HttpUtility.UrlEncode(imageByte64);
+            byte[] urlEncodeImageBytes = encoding.GetBytes(urlEncodeImage);
+            if (urlEncodeImageBytes.Length > 1024 * 1024 * 4)
+            {
+                MessageBox.Show("图片过大！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return false;
+            }
+            return true;
+        }
+
+        private void OnOriginalPictureBoxDragDrop(object sender, DragEventArgs e)
+        {
+            try
+            {
+                Array files = e.Data.GetData(DataFormats.FileDrop) as Array;
+                if (files == null || files.Length != 1)
+                {
+                    MessageBox.Show("请选择一张文字图片进行拖动（仅限于.bmp、.jpg、.png格式）！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+
+                string path = files.GetValue(0).ToString();
+                string extensionName = Path.GetExtension(path).ToLower();
+                if (!File.Exists(path) || (extensionName != ".bmp" && extensionName != ".jpg" && extensionName != ".png"))
+                {
+                    MessageBox.Show("请选择一张文字图片进行拖动（仅限于.bmp、.jpg、.png格式）！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+                m_imagePathText.Text = path;
+                m_originalPictureBox.Image = Image.FromFile(path);
+                Recognize();
+            }
+            catch
+            {
+                MessageBox.Show("拖动文件出错！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void OnOriginalPictureBoxDragEnter(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                e.Effect = DragDropEffects.Move;
+            }
+            else
+            {
+                e.Effect = DragDropEffects.None;
+            }
         }
     }
 }

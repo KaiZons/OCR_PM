@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.m_recognizeButton = new System.Windows.Forms.Button();
             this.m_selectPictureButton = new System.Windows.Forms.Button();
             this.m_imagePathText = new System.Windows.Forms.TextBox();
             this.m_tipLabel = new System.Windows.Forms.Label();
@@ -37,6 +36,7 @@
             this.m_originalPictureBox = new System.Windows.Forms.PictureBox();
             this.picDig = new System.Windows.Forms.FolderBrowserDialog();
             this.m_resultTextBox = new System.Windows.Forms.RichTextBox();
+            this.m_progressBar = new System.Windows.Forms.ProgressBar();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.m_originalPictureBox)).BeginInit();
             this.SuspendLayout();
@@ -45,7 +45,6 @@
             // 
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel1.Controls.Add(this.m_recognizeButton);
             this.panel1.Controls.Add(this.m_selectPictureButton);
             this.panel1.Controls.Add(this.m_imagePathText);
             this.panel1.Controls.Add(this.m_tipLabel);
@@ -55,16 +54,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1135, 50);
             this.panel1.TabIndex = 0;
-            // 
-            // m_recognizeButton
-            // 
-            this.m_recognizeButton.Location = new System.Drawing.Point(1020, 13);
-            this.m_recognizeButton.Name = "m_recognizeButton";
-            this.m_recognizeButton.Size = new System.Drawing.Size(75, 23);
-            this.m_recognizeButton.TabIndex = 3;
-            this.m_recognizeButton.Text = "识别文字";
-            this.m_recognizeButton.UseVisualStyleBackColor = true;
-            this.m_recognizeButton.Click += new System.EventHandler(this.OnRecognizeButtonClick);
             // 
             // m_selectPictureButton
             // 
@@ -115,6 +104,8 @@
             this.m_originalPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.m_originalPictureBox.TabIndex = 1;
             this.m_originalPictureBox.TabStop = false;
+            this.m_originalPictureBox.DragDrop += new System.Windows.Forms.DragEventHandler(this.OnOriginalPictureBoxDragDrop);
+            this.m_originalPictureBox.DragEnter += new System.Windows.Forms.DragEventHandler(this.OnOriginalPictureBoxDragEnter);
             this.m_originalPictureBox.DoubleClick += new System.EventHandler(this.pictureBox_DoubleClick);
             // 
             // m_resultTextBox
@@ -127,11 +118,19 @@
             this.m_resultTextBox.TabIndex = 2;
             this.m_resultTextBox.Text = "";
             // 
+            // m_progressBar
+            // 
+            this.m_progressBar.Location = new System.Drawing.Point(715, 324);
+            this.m_progressBar.Name = "m_progressBar";
+            this.m_progressBar.Size = new System.Drawing.Size(294, 23);
+            this.m_progressBar.TabIndex = 3;
+            // 
             // RecognizeWordsOnPic
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1129, 623);
+            this.Controls.Add(this.m_progressBar);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.m_resultTextBox);
             this.Controls.Add(this.m_originalPictureBox);
@@ -158,7 +157,7 @@
         private System.Windows.Forms.FolderBrowserDialog picDig;
         private System.Windows.Forms.RichTextBox m_resultTextBox;
         private System.Windows.Forms.Label m_tipLabel;
-        private System.Windows.Forms.Button m_recognizeButton;
+        private System.Windows.Forms.ProgressBar m_progressBar;
     }
 }
 

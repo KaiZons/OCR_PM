@@ -30,3 +30,17 @@ E:\vs2017TestCode\OCRTest\BaiduAIAPI\bin\Debug\Utilities.pdb
 E:\vs2017TestCode\OCRTest\BaiduAIAPI\bin\Debug\Newtonsoft.Json.pdb
 E:\vs2017TestCode\OCRTest\BaiduAIAPI\bin\Debug\Newtonsoft.Json.xml
 E:\vs2017TestCode\OCRTest\BaiduAIAPI\obj\Debug\BaiduAIAPI.csproj.CopyComplete
+F:\GitWorkspace\OCR_PM\BaiduAIAPI\bin\Debug\BaiduAIAPI.dll
+F:\GitWorkspace\OCR_PM\BaiduAIAPI\bin\Debug\BaiduAIAPI.pdb
+F:\GitWorkspace\OCR_PM\BaiduAIAPI\bin\Debug\Module.dll
+F:\GitWorkspace\OCR_PM\BaiduAIAPI\bin\Debug\Utilities.dll
+F:\GitWorkspace\OCR_PM\BaiduAIAPI\bin\Debug\Newtonsoft.Json.dll
+F:\GitWorkspace\OCR_PM\BaiduAIAPI\bin\Debug\Module.pdb
+F:\GitWorkspace\OCR_PM\BaiduAIAPI\bin\Debug\Utilities.pdb
+F:\GitWorkspace\OCR_PM\BaiduAIAPI\bin\Debug\Newtonsoft.Json.pdb
+F:\GitWorkspace\OCR_PM\BaiduAIAPI\bin\Debug\Newtonsoft.Json.xml
+F:\GitWorkspace\OCR_PM\BaiduAIAPI\obj\Debug\BaiduAIAPI.csprojAssemblyReference.cache
+F:\GitWorkspace\OCR_PM\BaiduAIAPI\obj\Debug\BaiduAIAPI.csproj.CoreCompileInputs.cache
+F:\GitWorkspace\OCR_PM\BaiduAIAPI\obj\Debug\BaiduAIAPI.csproj.CopyComplete
+F:\GitWorkspace\OCR_PM\BaiduAIAPI\obj\Debug\BaiduAIAPI.dll
+F:\GitWorkspace\OCR_PM\BaiduAIAPI\obj\Debug\BaiduAIAPI.pdb
