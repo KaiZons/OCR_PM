@@ -4,3 +4,8 @@ E:\vs2017TestCode\OCRTest\Module\obj\Debug\Module.csprojAssemblyReference.cache
 E:\vs2017TestCode\OCRTest\Module\obj\Debug\Module.csproj.CoreCompileInputs.cache
 E:\vs2017TestCode\OCRTest\Module\obj\Debug\Module.dll
 E:\vs2017TestCode\OCRTest\Module\obj\Debug\Module.pdb
+F:\GitWorkspace\OCR_PM\Module\bin\Debug\Module.dll
+F:\GitWorkspace\OCR_PM\Module\bin\Debug\Module.pdb
+F:\GitWorkspace\OCR_PM\Module\obj\Debug\Module.csproj.CoreCompileInputs.cache
+F:\GitWorkspace\OCR_PM\Module\obj\Debug\Module.dll
+F:\GitWorkspace\OCR_PM\Module\obj\Debug\Module.pdb

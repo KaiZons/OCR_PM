@@ -96,7 +96,6 @@ F:\GitWorkspace\OCR_PM\ImageMoveZoom\bin\Debug\Images\Penguins.jpg
 F:\GitWorkspace\OCR_PM\ImageMoveZoom\bin\Debug\Images\Tulips.jpg
 F:\GitWorkspace\OCR_PM\ImageMoveZoom\bin\Debug\ImageMoveZoom.dll
 F:\GitWorkspace\OCR_PM\ImageMoveZoom\bin\Debug\ImageMoveZoom.pdb
-F:\GitWorkspace\OCR_PM\ImageMoveZoom\obj\x86\Debug\ImageMoveZoom.csprojAssemblyReference.cache
 F:\GitWorkspace\OCR_PM\ImageMoveZoom\obj\x86\Debug\ImageMoveZoom.Form1.resources
 F:\GitWorkspace\OCR_PM\ImageMoveZoom\obj\x86\Debug\ImageMoveZoom.PicViewForm.resources
 F:\GitWorkspace\OCR_PM\ImageMoveZoom\obj\x86\Debug\ImageMoveZoom.Properties.Resources.resources

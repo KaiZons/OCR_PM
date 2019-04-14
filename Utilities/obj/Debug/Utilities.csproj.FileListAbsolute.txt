@@ -13,7 +13,6 @@ F:\GitWorkspace\OCR_PM\Utilities\bin\Debug\Utilities.pdb
 F:\GitWorkspace\OCR_PM\Utilities\bin\Debug\Newtonsoft.Json.dll
 F:\GitWorkspace\OCR_PM\Utilities\bin\Debug\Newtonsoft.Json.pdb
 F:\GitWorkspace\OCR_PM\Utilities\bin\Debug\Newtonsoft.Json.xml
-F:\GitWorkspace\OCR_PM\Utilities\obj\Debug\Utilities.csprojAssemblyReference.cache
 F:\GitWorkspace\OCR_PM\Utilities\obj\Debug\Utilities.csproj.CoreCompileInputs.cache
 F:\GitWorkspace\OCR_PM\Utilities\obj\Debug\Utilities.csproj.CopyComplete
 F:\GitWorkspace\OCR_PM\Utilities\obj\Debug\Utilities.dll
