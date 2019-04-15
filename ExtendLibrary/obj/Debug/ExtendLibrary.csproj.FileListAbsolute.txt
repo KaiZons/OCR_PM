@@ -1,0 +1,5 @@
+F:\GitWorkspace\OCR_PM\ExtendLibrary\obj\Debug\ExtendLibrary.csproj.CoreCompileInputs.cache
+F:\GitWorkspace\OCR_PM\ExtendLibrary\bin\Debug\ExtendLibrary.dll
+F:\GitWorkspace\OCR_PM\ExtendLibrary\bin\Debug\ExtendLibrary.pdb
+F:\GitWorkspace\OCR_PM\ExtendLibrary\obj\Debug\ExtendLibrary.dll
+F:\GitWorkspace\OCR_PM\ExtendLibrary\obj\Debug\ExtendLibrary.pdb

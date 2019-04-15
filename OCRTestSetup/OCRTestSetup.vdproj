@@ -15,18 +15,6 @@
     {
         "Entry"
         {
-        "MsmKey" = "8:_2211F4FAECC9B0DC5CC2EE8E44133721"
-        "OwnerKey" = "8:_80082637209943B3B5415E97BFBB4B8D"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_2211F4FAECC9B0DC5CC2EE8E44133721"
-        "OwnerKey" = "8:_8D642EB72B4F62DD8F299C00FFA9EF99"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_2C88DA38A2A2B96E3EFC0E02BA8F7241"
         "OwnerKey" = "8:_5CF99FB2D330037E2AE7C11E21D3A672"
         "MsmSig" = "8:_UNDEFINED"
@@ -87,8 +75,14 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_2211F4FAECC9B0DC5CC2EE8E44133721"
+        "MsmKey" = "8:_F18882721433C075BE6A66335507B247"
+        "OwnerKey" = "8:_80082637209943B3B5415E97BFBB4B8D"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_F18882721433C075BE6A66335507B247"
+        "OwnerKey" = "8:_8D642EB72B4F62DD8F299C00FFA9EF99"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -127,6 +121,12 @@
         "OwnerKey" = "8:_3E70602739538722ED794201DDE70ABA"
         "MsmSig" = "8:_UNDEFINED"
         }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_F18882721433C075BE6A66335507B247"
+        "MsmSig" = "8:_UNDEFINED"
+        }
     }
     "Configurations"
     {
@@ -145,6 +145,22 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.6.1"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.6.1 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.6.1"
+                    }
+                }
+            }
         }
         "Release"
         {
@@ -161,12 +177,42 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.6.1"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.6.1 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.6.1"
+                    }
+                }
+            }
         }
     }
     "Deployable"
     {
         "CustomAction"
         {
+            "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_13417B2447EF42D4885AC1C829AA2B02"
+            {
+            "Name" = "8:主输出 from ExtendLibrary (Active)"
+            "Condition" = "8:"
+            "Object" = "8:"
+            "FileType" = "3:1"
+            "InstallAction" = "3:1"
+            "Arguments" = "8:"
+            "EntryPoint" = "8:"
+            "Sequence" = "3:1"
+            "Identifier" = "8:_E4D7DF23_82B6_4B1D_B89B_678AF93F6008"
+            "InstallerClass" = "11:TRUE"
+            "CustomActionData" = "8:/targetdir=”[TARGETDIR]\\”"
+            }
         }
         "DefaultFeature"
         {
@@ -190,37 +236,6 @@
         }
         "File"
         {
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_2211F4FAECC9B0DC5CC2EE8E44133721"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:System.Net.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"
-                "ScatterAssemblies"
-                {
-                    "_2211F4FAECC9B0DC5CC2EE8E44133721"
-                    {
-                    "Name" = "8:System.Net.Http.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:System.Net.Http.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_AAE021E830AF4AD191018722DC52F6EE"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_2C88DA38A2A2B96E3EFC0E02BA8F7241"
             {
             "AssemblyRegister" = "3:1"
@@ -396,6 +411,37 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_F18882721433C075BE6A66335507B247"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:System.Net.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"
+                "ScatterAssemblies"
+                {
+                    "_F18882721433C075BE6A66335507B247"
+                    {
+                    "Name" = "8:System.Net.Http.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:System.Net.Http.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_AAE021E830AF4AD191018722DC52F6EE"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
         }
         "FileType"
         {
@@ -464,7 +510,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:图片文字识别工具"
         "ProductCode" = "8:{FD07837C-118D-4EC8-89CF-6BCBB023049E}"
-        "PackageCode" = "8:{1B7E157F-CF51-4653-8CD1-9B4A1CABDFFF}"
+        "PackageCode" = "8:{11951195-4B68-45E3-87EF-FE4DA051BCEE}"
         "UpgradeCode" = "8:{451A297F-8A85-4FD5-B62E-7CA0E2FA6756}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
