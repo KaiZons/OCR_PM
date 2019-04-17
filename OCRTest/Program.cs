@@ -17,7 +17,7 @@ namespace OCRTest
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new RecognizeWordsOnPic());
+            Application.Run(new RecognizeWordsOnPic());      
         }
     }
 }
