@@ -25,6 +25,7 @@ namespace OCRTest
 
         public RecognizeWordsOnPic()
         {
+            Control.CheckForIllegalCrossThreadCalls = false;
             InitializeComponent();
             m_originalPictureBox.AllowDrop = true;
             ResetProgressBar(false);
@@ -101,6 +102,7 @@ namespace OCRTest
             {
                 return;
             }
+            
             Task.Run(RemoteBaiduRecognize);
             RunProgressBar();
             m_resultTextBox.Text = m_recongnizeText;
