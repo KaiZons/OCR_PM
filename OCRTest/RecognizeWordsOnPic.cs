@@ -209,17 +209,9 @@ namespace OCRTest
             try
             {
                 Array files = e.Data.GetData(DataFormats.FileDrop) as Array;
-                if (files == null || files.Length != 1)
+                string path;
+                if (!GetCorrectImagePath(files, out path))
                 {
-                    MessageBox.Show("请选择一张文字图片进行拖动（仅限于.bmp、.jpg、.png格式）！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    return;
-                }
-
-                string path = files.GetValue(0).ToString();
-                string extensionName = Path.GetExtension(path).ToLower();
-                if (!File.Exists(path) || (extensionName != ".bmp" && extensionName != ".jpg" && extensionName != ".png"))
-                {
-                    MessageBox.Show("请选择一张文字图片进行拖动（仅限于.bmp、.jpg、.png格式）！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return;
                 }
                 m_imagePathText.Text = path;
@@ -228,7 +220,7 @@ namespace OCRTest
             }
             catch
             {
-                MessageBox.Show("拖动文件出错！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("拖动图片出错！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
@@ -243,5 +235,60 @@ namespace OCRTest
                 e.Effect = DragDropEffects.None;
             }
         }
+
+        private void OnPasteMenuClick(object sender, EventArgs e)
+        {
+            PasteAndRecognize();
+        }
+
+        private void OnRecognizeWordsOnPicKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Modifiers == Keys.Control && e.KeyCode == Keys.V)
+            {
+                PasteAndRecognize();
+            }
+        }
+
+        private void PasteAndRecognize()
+        {
+            try
+            {
+                IDataObject idata = Clipboard.GetDataObject();
+                Array files = idata.GetData(DataFormats.FileDrop, true) as Array;
+                string path;
+                if (!GetCorrectImagePath(files, out path))
+                {
+                    return;
+                }
+                m_imagePathText.Text = path;
+                m_originalPictureBox.Image = Image.FromFile(path);
+                Recognize();
+            }
+            catch
+            {
+                MessageBox.Show("粘贴图片出错！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private bool GetCorrectImagePath(Array files, out string correctImagePath)
+        {
+            correctImagePath = string.Empty;
+            if (files == null || files.Length != 1)
+            {
+                MessageBox.Show("请选择一张文字图片（仅限于.bmp、.jpg、.png格式）！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return false;
+            }
+
+            string path = files.GetValue(0).ToString();
+            string extensionName = Path.GetExtension(path).ToLower();
+            if (!File.Exists(path) || (extensionName != ".bmp" && extensionName != ".jpg" && extensionName != ".png"))
+            {
+                MessageBox.Show("请选择一张文字图片（仅限于.bmp、.jpg、.png格式）！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return false;
+            }
+            correctImagePath = path;
+            return true;
+        }
+
     }
 }
