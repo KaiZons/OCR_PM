@@ -17,3 +17,4 @@ F:\GitWorkspace\OCR_PM\Utilities\obj\Debug\Utilities.csproj.CoreCompileInputs.ca
 F:\GitWorkspace\OCR_PM\Utilities\obj\Debug\Utilities.csproj.CopyComplete
 F:\GitWorkspace\OCR_PM\Utilities\obj\Debug\Utilities.dll
 F:\GitWorkspace\OCR_PM\Utilities\obj\Debug\Utilities.pdb
+F:\GitWorkspace\OCR_PM\Utilities\obj\Debug\Utilities.csprojAssemblyReference.cache

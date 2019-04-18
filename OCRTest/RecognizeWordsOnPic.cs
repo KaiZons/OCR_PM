@@ -22,14 +22,12 @@ namespace OCRTest
     {
         private bool m_recongnizeFinished = false;
         private string m_recongnizeText = string.Empty;
-        private string m_pattern = "普通版";
 
         public RecognizeWordsOnPic()
         {
             InitializeComponent();
             m_originalPictureBox.AllowDrop = true;
             ResetProgressBar(false);
-            m_recongnizePattern.SelectedIndex = 0;
         }
 
         private void ResetProgressBar(bool visible, int max = 100, int value = 0)
@@ -45,6 +43,7 @@ namespace OCRTest
             try
             {
                 m_originalPictureBox.Image = GetImage();
+                m_imagePathText.Focus();
                 Recognize();
             }
             catch
@@ -102,7 +101,6 @@ namespace OCRTest
             {
                 return;
             }
-            m_pattern = m_recongnizePattern.Text; 
             Task.Run(RemoteBaiduRecognize);
             RunProgressBar();
             m_resultTextBox.Text = m_recongnizeText;
@@ -128,12 +126,13 @@ namespace OCRTest
             catch
             {
                 MessageBox.Show("识别过程出错！", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                m_recongnizeFinished = true;
             }
         }
 
         private string RecognizeText(string tokenString)
         {
-            string host = AccessToken.GetBaiduRecognizeUrl(m_pattern) + "?access_token=" + tokenString;//参数参考https://ai.baidu.com/docs#/OCR-API/top
+            string host = AccessToken.GetBaiduRecognizeUrl() + "?access_token=" + tokenString;//参数参考https://ai.baidu.com/docs#/OCR-API/top
             Bitmap bitmap = new Bitmap(m_originalPictureBox.Image);
             string imageByteValue = ImageConversion.ImageToByte64String(bitmap, System.Drawing.Imaging.ImageFormat.Jpeg);
             if (!VerificationImage(imageByteValue))
@@ -241,14 +240,6 @@ namespace OCRTest
             PasteAndRecognize();
         }
 
-        private void OnRecognizeWordsOnPicKeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.Modifiers == Keys.Control && e.KeyCode == Keys.V)
-            {
-                PasteAndRecognize();
-            }
-        }
-
         private void PasteAndRecognize()
         {
             try
@@ -290,5 +281,21 @@ namespace OCRTest
             return true;
         }
 
+        private void RecognizeWordsOnPic_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Modifiers == Keys.Control && e.KeyCode == Keys.V)
+            {
+                PasteAndRecognize();
+            }
+        }
+
+        private void M_imagePathText_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Modifiers == Keys.Control && e.KeyCode == Keys.V)
+            {
+                PasteAndRecognize();
+            }
+
+        }
     }
 }

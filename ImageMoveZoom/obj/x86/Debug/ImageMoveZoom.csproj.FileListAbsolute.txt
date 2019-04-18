@@ -103,3 +103,4 @@ F:\GitWorkspace\OCR_PM\ImageMoveZoom\obj\x86\Debug\ImageMoveZoom.csproj.Generate
 F:\GitWorkspace\OCR_PM\ImageMoveZoom\obj\x86\Debug\ImageMoveZoom.csproj.CoreCompileInputs.cache
 F:\GitWorkspace\OCR_PM\ImageMoveZoom\obj\x86\Debug\ImageMoveZoom.dll
 F:\GitWorkspace\OCR_PM\ImageMoveZoom\obj\x86\Debug\ImageMoveZoom.pdb
+F:\GitWorkspace\OCR_PM\ImageMoveZoom\obj\x86\Debug\ImageMoveZoom.csprojAssemblyReference.cache

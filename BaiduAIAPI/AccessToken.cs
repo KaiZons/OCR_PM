@@ -7,6 +7,7 @@ using System.Configuration;
 using System.Net.Http;
 using Module;
 using Utilities;
+using System.Windows.Forms;
 
 namespace BaiduAIAPI
 {
@@ -51,11 +52,12 @@ namespace BaiduAIAPI
             return accessTokenView;
         }
 
-        public static string GetBaiduRecognizeUrl(string pattern)
+        public static string GetBaiduRecognizeUrl()
         {
-            bool isHighPrecision = pattern == "高精度版";
-            return isHighPrecision ? "https://aip.baidubce.com/rest/2.0/ocr/v1/accurate_basic"
-                                   : "https://aip.baidubce.com/rest/2.0/ocr/v1/general_basic";
+            RecognizePattern pattern = GetBaiduRecognizePattern();
+            return pattern == RecognizePattern.高精度版 
+                                    ? "https://aip.baidubce.com/rest/2.0/ocr/v1/accurate_basic"
+                                    : "https://aip.baidubce.com/rest/2.0/ocr/v1/general_basic";
         }
 
         private static string GetBaiduAccessToken()
@@ -67,6 +69,30 @@ namespace BaiduAIAPI
             contentParaList.Add(new KeyValuePair<string, string>("client_secret", _SecretKey));
             HttpResponseMessage response = client.PostAsync(_AuthHostUrl, new FormUrlEncodedContent(contentParaList)).Result;
             return response.Content.ReadAsStringAsync().Result;
+        }
+
+        private static RecognizePattern GetBaiduRecognizePattern()
+        {
+            string highPrecision = ConfigurationManager.AppSettings["HighPrecision"].ToString();
+            if (string.IsNullOrWhiteSpace(highPrecision))
+            {
+                return RecognizePattern.普通版;
+            }
+
+            if (bool.TryParse(highPrecision, out bool isHighPrecision))
+            {
+                return isHighPrecision ? RecognizePattern.高精度版 : RecognizePattern.普通版;
+            }
+            else
+            {
+                return RecognizePattern.普通版;
+            }
+        }
+
+        private enum RecognizePattern
+        {
+            普通版 = 0,
+            高精度版 
         }
     }
 }

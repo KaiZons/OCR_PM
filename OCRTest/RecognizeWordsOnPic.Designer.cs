@@ -30,11 +30,9 @@
         {
             this.components = new System.ComponentModel.Container();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.m_recongnizePattern = new System.Windows.Forms.ComboBox();
             this.m_selectPictureButton = new System.Windows.Forms.Button();
             this.m_imagePathText = new System.Windows.Forms.TextBox();
             this.m_tipLabel = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
             this.m_imagePathLabel = new System.Windows.Forms.Label();
             this.m_originalPictureBox = new System.Windows.Forms.PictureBox();
             this.m_cms = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -51,29 +49,15 @@
             // 
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel1.Controls.Add(this.m_recongnizePattern);
             this.panel1.Controls.Add(this.m_selectPictureButton);
             this.panel1.Controls.Add(this.m_imagePathText);
             this.panel1.Controls.Add(this.m_tipLabel);
-            this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.m_imagePathLabel);
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Margin = new System.Windows.Forms.Padding(0);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1135, 50);
             this.panel1.TabIndex = 0;
-            // 
-            // m_recongnizePattern
-            // 
-            this.m_recongnizePattern.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.m_recongnizePattern.FormattingEnabled = true;
-            this.m_recongnizePattern.Items.AddRange(new object[] {
-            "普通版",
-            "高精度版"});
-            this.m_recongnizePattern.Location = new System.Drawing.Point(1018, 14);
-            this.m_recongnizePattern.Name = "m_recongnizePattern";
-            this.m_recongnizePattern.Size = new System.Drawing.Size(99, 20);
-            this.m_recongnizePattern.TabIndex = 3;
             // 
             // m_selectPictureButton
             // 
@@ -91,6 +75,7 @@
             this.m_imagePathText.Name = "m_imagePathText";
             this.m_imagePathText.Size = new System.Drawing.Size(570, 21);
             this.m_imagePathText.TabIndex = 1;
+            this.m_imagePathText.KeyDown += new System.Windows.Forms.KeyEventHandler(this.M_imagePathText_KeyDown);
             // 
             // m_tipLabel
             // 
@@ -101,15 +86,6 @@
             this.m_tipLabel.Size = new System.Drawing.Size(197, 12);
             this.m_tipLabel.TabIndex = 0;
             this.m_tipLabel.Text = "(选择图片或将图片拖入左侧图片框)";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(953, 18);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(59, 12);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "识别方式:";
             // 
             // m_imagePathLabel
             // 
@@ -184,7 +160,7 @@
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "图片文字识别";
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.OnRecognizeWordsOnPicKeyDown);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.RecognizeWordsOnPic_KeyDown);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.m_originalPictureBox)).EndInit();
@@ -204,8 +180,6 @@
         private System.Windows.Forms.RichTextBox m_resultTextBox;
         private System.Windows.Forms.Label m_tipLabel;
         private System.Windows.Forms.ProgressBar m_progressBar;
-        private System.Windows.Forms.ComboBox m_recongnizePattern;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ContextMenuStrip m_cms;
         private System.Windows.Forms.ToolStripMenuItem m_pasteMenu;
     }
