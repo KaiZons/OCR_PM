@@ -290,14 +290,5 @@ namespace OCRTest
                 PasteAndRecognize();
             }
         }
-
-        private void M_imagePathText_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.Modifiers == Keys.Control && e.KeyCode == Keys.V)
-            {
-                PasteAndRecognize();
-            }
-
-        }
     }
 }

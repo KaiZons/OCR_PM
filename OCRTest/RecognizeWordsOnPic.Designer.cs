@@ -75,7 +75,7 @@
             this.m_imagePathText.Name = "m_imagePathText";
             this.m_imagePathText.Size = new System.Drawing.Size(570, 21);
             this.m_imagePathText.TabIndex = 1;
-            this.m_imagePathText.KeyDown += new System.Windows.Forms.KeyEventHandler(this.M_imagePathText_KeyDown);
+            //this.m_imagePathText.KeyDown += new System.Windows.Forms.KeyEventHandler(this.M_imagePathText_KeyDown);
             // 
             // m_tipLabel
             // 
@@ -154,6 +154,7 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.m_resultTextBox);
             this.Controls.Add(this.m_originalPictureBox);
+            this.KeyPreview = true;
             this.MaximumSize = new System.Drawing.Size(1145, 662);
             this.MinimumSize = new System.Drawing.Size(1145, 662);
             this.Name = "RecognizeWordsOnPic";
